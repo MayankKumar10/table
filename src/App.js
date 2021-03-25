@@ -1,6 +1,4 @@
 import React,{useState, useEffect} from 'react';
-//import axios from 'axios';
-import './App.css';
 import Walkwel from './walkwel.json';
 import DataTable from './DataTable';
 import './Table.css'
@@ -37,32 +35,35 @@ const columns = data[0] && Object.keys(data[0]);
         
         <div class="ui search">
           <div class="ui icon input">
-            <input class="prompt" type="text" placeholder="Type..." value={q} onChange={(e) => setQ(e.target.value)} />
+            <input class="prompt" type="text" placeholder="Search..." value={q} onChange={(e) => setQ(e.target.value)} />
             <i class="search icon"></i>
           </div>
-          <div class="results"></div>
-        </div>
+          <div className="outerContainer">
+            {columns && 
+            columns.map((column)=> (         
+                
+                <label className="checkboxContainer">
+                <input 
+                type='checkbox' 
+                checked={searchColumns.includes(column)}
+                onChange={(e)=>{
+                  const checked = searchColumns.includes(column);
+                  setSearchColumns((prev)=>
+                  checked
+                  ? prev.filter((sc)=> sc !== column)
+                  : [...prev, column]
+                  );
+                }}
+                />
+                <span class="checkmark"></span> 
+                {column.toUpperCase()} 
+                </label>
+              
+              ))}
 
-        {columns && 
-        columns.map((column)=> (         
-            <label className="checkboxContainer">
-            <input 
-            type='checkbox' 
-            checked={searchColumns.includes(column)}
-            onChange={(e)=>{
-              const checked = searchColumns.includes(column);
-              setSearchColumns((prev)=>
-              checked
-              ? prev.filter((sc)=> sc !== column)
-              : [...prev, column]
-              );
-            }}
-            />
-            <span class="checkmark"></span> 
-            {column} 
-            </label>
-          
-          ))}
+            </div>
+        </div>
+            
         </div> 
 
         <div> <DataTable data = {search(data)} /> </div>     
