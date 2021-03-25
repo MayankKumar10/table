@@ -31,15 +31,19 @@ table {
   }
 
   /*----------------------CheckBox-----------------------*/
-
+  .outerContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: -30px;
+  }
   .checkboxContainer {
     max-height:100px;
     position: relative;
-    display: flex;
     padding-left: 35px;
     margin-bottom: 12px;
+    padding-top:5px;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 18px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -58,8 +62,8 @@ table {
   /* Create a custom checkbox */
   .checkmark {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 5px;
+    left: 6px;
     height: 25px;
     width: 25px;
     background-color: #eee;
